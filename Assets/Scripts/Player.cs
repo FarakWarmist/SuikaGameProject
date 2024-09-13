@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
 
     public TMP_Text textScore;
     public int score;
+
+    [SerializeField] AudioSource dropAudio;
+    [SerializeField] AudioSource fusionAudio;
     
     void Start()
     {
@@ -41,7 +44,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            
+            dropAudio.Play();
             Instantiate(metalObjSpawn, transform.position, Quaternion.identity);
 
             handOpened.SetActive(true);
@@ -70,6 +73,13 @@ public class Player : MonoBehaviour
 
     internal void SpawnBall(int index, Vector3 fusionPosition)
     {
+        //Ne spawn rien si dépasse l'index
+        if (index >= metalObj.Length)
+        {
+            return;
+        }
         
+        fusionAudio.Play();
+        Instantiate(metalObj[index], fusionPosition, Quaternion.identity);
     }
 }

@@ -10,16 +10,19 @@ public class Balls : MonoBehaviour
     [SerializeField] int scorePoint;*/
     bool isFusioning;
 
+    [SerializeField] AudioSource collideSound;
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (isFusioning)
         {
             Destroy(gameObject);
             return;
         }
         var otherBall = collision.gameObject.GetComponent<Balls>();
-
+        collideSound.Play();
         if (otherBall != null)
         {
             /*Debug.Log($"{gameObject.name} collide with {collision.gameObject.name}");
@@ -34,6 +37,8 @@ public class Balls : MonoBehaviour
                 Vector3 contactPoint = (transform.position + otherBall.transform.position) / 2;
 
                 FindAnyObjectByType<Player>().SpawnBall(ballIndex + 1, contactPoint);
+                Destroy(gameObject);
+                return;
                 /* Méthode sans Index
                 if (nextBall != null)
                 {
