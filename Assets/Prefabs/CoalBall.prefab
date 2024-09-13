@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2572326906233732379
+--- !u!1001 &5648239631361470344
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,35 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1407296964011024498, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_Name
-      value: SilverBall
+      value: CoalBall
       objectReference: {fileID: 0}
-    - target: {fileID: 2222957969745277436, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
-      propertyPath: ballIndex
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793322289345172843, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a555abb7d48a40a409904d7e09eb6eba, type: 3}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.37
+      value: -17.79
       objectReference: {fileID: 0}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -71,10 +63,6 @@ PrefabInstance:
     - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9187346339821411819, guid: 60e536fcbf796c74ea0c1995122c66f2, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
