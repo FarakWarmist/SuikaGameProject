@@ -44,10 +44,6 @@ public class Player : MonoBehaviour
             
             Instantiate(metalObjSpawn, transform.position, Quaternion.identity);
 
-            /*Balls newBallScript = newMetalObjSpawn.GetComponent<Balls>();
-            newBallScript.player = this;
-            newBallScript.ballIndex = 0;*/
-
             handOpened.SetActive(true);
             handClosed.SetActive(false);
             Invoke("CloseHand", 0.2f);
@@ -64,40 +60,16 @@ public class Player : MonoBehaviour
         nextPos.x = Mathf.Clamp(nextPos.x, 0.7f, 7.6f);
         transform.position = nextPos;
         ///////////////////////////
-        /*if (transform.position.x <= 0f)
-        {
-            transform.position += new Vector3(Mathf.Clamp(x, 0f, 7f), 0, 0) * Time.deltaTime * speed;
-        }
-        else if (transform.position.x >= 7f)
-        {
-            transform.position -= new Vector3(Mathf.Clamp(x, 1f, 0f), 0, 0) * Time.deltaTime * speed;
-        }
-        else
-        {
-            transform.position += new Vector3(x, 0, 0) * Time.deltaTime * speed;
-        }*/
 
     }
-    /*public void SpawmBalls()
-    {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-        {
-            var metalObjSpawn = metalObj[Random.Range(0, metalObj.Length)];
-            Instantiate(metalObjSpawn, transform.position, Quaternion.identity);
-
-            //Balls newBallScript = newMetalObjSpawn.GetComponent<Balls>();
-            //newBallScript.player = this;
-            //newBallScript.ballIndex = 0;
-            
-            handOpened.SetActive(true);
-            handClosed.SetActive(false);
-            Invoke("CloseHand", 0.2f);
-        }
-    }*/
     void CloseHand()
     {
         handOpened.SetActive(false);
         handClosed.SetActive(true);
     }
 
+    internal void SpawnBall(int index, Vector3 fusionPosition)
+    {
+        
+    }
 }

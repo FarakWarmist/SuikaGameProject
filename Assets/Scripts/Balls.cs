@@ -5,22 +5,36 @@ using UnityEngine;
 public class Balls : MonoBehaviour
 {
     public int ballIndex;
-    //public Player player;
+    /*public Player player;
     public GameObject nextBall;
-    [SerializeField] int scorePoint;
+    [SerializeField] int scorePoint;*/
+    bool isFusioning;
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isFusioning)
+        {
+            Destroy(gameObject);
+            return;
+        }
         var otherBall = collision.gameObject.GetComponent<Balls>();
 
         if (otherBall != null)
         {
-            //Debug.Log($"{gameObject.name} collide with {collision.gameObject.name}");
+            /*Debug.Log($"{gameObject.name} collide with {collision.gameObject.name}");
             if (!gameObject.activeSelf || !collision.gameObject.activeSelf)
-                return;
+                return;*/
 
             if (otherBall.ballIndex == ballIndex)
             {   
+                isFusioning = true;
+                otherBall.isFusioning = true;
+
+                Vector3 contactPoint = (transform.position + otherBall.transform.position) / 2;
+
+                FindAnyObjectByType<Player>().SpawnBall(ballIndex + 1, contactPoint);
+                /* Méthode sans Index
                 if (nextBall != null)
                 {
                     collision.gameObject.SetActive(false);
@@ -36,7 +50,7 @@ public class Balls : MonoBehaviour
 
                     gameObject.SetActive(false);
                     Destroy(gameObject);
-                }
+                }*/
             }
         }
 
