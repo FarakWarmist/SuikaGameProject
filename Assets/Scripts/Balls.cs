@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Balls : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Balls : MonoBehaviour
     bool isFusioning;
 
     [SerializeField] AudioSource collideSound;
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,10 +31,29 @@ public class Balls : MonoBehaviour
             if (!gameObject.activeSelf || !collision.gameObject.activeSelf)
                 return;*/
 
-            if (otherBall.ballIndex == ballIndex)
+            if (otherBall.ballIndex == ballIndex) //&& ballIndex < 2)
             {   
                 isFusioning = true;
                 otherBall.isFusioning = true;
+
+                int score = 0;
+
+                switch (ballIndex)
+                {
+                    default:
+                        break;
+                    case 0: // Cole
+                        score = 25;
+                        break;
+                    case 1: //Copper
+                        score = 50;
+                        break;
+                    case 2: // Silver
+                        score = 100;
+                        break;
+                }
+
+                FindAnyObjectByType<Score>().AddScore(score);
 
                 Vector3 contactPoint = (transform.position + otherBall.transform.position) / 2;
 

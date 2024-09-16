@@ -15,9 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite sprite;
     public int i = -1;
     public int j = -1;
-
-    public TMP_Text textScore;
-    public int score;
+    public bool click = true;
 
     [SerializeField] AudioSource dropAudio;
     [SerializeField] AudioSource fusionAudio;
@@ -41,6 +39,8 @@ public class Player : MonoBehaviour
         int randomIndex = Random.Range(0, metalObj.Length);
         var metalObjSpawn = metalObj[randomIndex];
         currentBall = Instantiate(metalObjSpawn, spawnOffset.position, Quaternion.identity,spawnOffset);
+        currentBall.GetComponent<Collider2D>().isTrigger = true;
+        click = true;
     }
 
     // Update is called once per frame
@@ -50,14 +50,15 @@ public class Player : MonoBehaviour
         Vector3 nextPos = transform.position;// faire une copie
 
         nextPos += new Vector3(x, 0, 0) * Time.deltaTime * speed;
-        nextPos.x = Mathf.Clamp(nextPos.x, 0.7f, 7.6f);
+        nextPos.x = Mathf.Clamp(nextPos.x, 0f, 8f);
         transform.position = nextPos;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && click == true)
         {
-
+            click = false;
             currentBall.transform.parent = null;
             currentBall.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            currentBall.GetComponent<Collider2D>().isTrigger = false;
             dropAudio.Play();
 
             handOpened.SetActive(true);
@@ -65,6 +66,8 @@ public class Player : MonoBehaviour
             Invoke("CloseHand", 0.2f);
             Invoke("GrapBall", 0.5f);
         }
+
+
     }
     void CloseHand()
     {
@@ -83,5 +86,12 @@ public class Player : MonoBehaviour
         fusionAudio.Play();
         var fusionedBall = Instantiate(metalObj[index], fusionPosition, Quaternion.identity);
         fusionedBall.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        
+    }
+
+    internal void GameOver()
+    {
+        Destroy(gameObject.GetComponent<Player>());
+        Debug.Log("!!! GAME OVER !!!");
     }
 }
