@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     }
     private void GrapBall()
     {
-        int randomIndex = Random.Range(0, metalObj.Length);
+        int randomIndex = Random.Range(0, 3);
         var metalObjSpawn = metalObj[randomIndex];
         currentBall = Instantiate(metalObjSpawn, spawnOffset.position, Quaternion.identity,spawnOffset);
         currentBall.GetComponent<Collider2D>().isTrigger = true;

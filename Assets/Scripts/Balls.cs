@@ -31,7 +31,7 @@ public class Balls : MonoBehaviour
             if (!gameObject.activeSelf || !collision.gameObject.activeSelf)
                 return;*/
 
-            if (otherBall.ballIndex == ballIndex) //&& ballIndex < 2)
+            if (otherBall.ballIndex == ballIndex && ballIndex < 4)
             {   
                 isFusioning = true;
                 otherBall.isFusioning = true;
@@ -45,11 +45,17 @@ public class Balls : MonoBehaviour
                     case 0: // Cole
                         score = 25;
                         break;
-                    case 1: //Copper
+                    case 1: // Copper
                         score = 50;
                         break;
                     case 2: // Silver
                         score = 100;
+                        break;
+                    case 3: // Gold
+                        score = 200;
+                        break;
+                    case 4: // Cobalt
+                        score = 400;
                         break;
                 }
 
