@@ -25,7 +25,7 @@ public class Balls : MonoBehaviour
         }
         var otherBall = collision.gameObject.GetComponent<Balls>();
         collideSound.Play();
-        if (otherBall != null)
+        if (otherBall != null && !otherBall.isFusioning)
         {
             /*Debug.Log($"{gameObject.name} collide with {collision.gameObject.name}");
             if (!gameObject.activeSelf || !collision.gameObject.activeSelf)

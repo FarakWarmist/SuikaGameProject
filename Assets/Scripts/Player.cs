@@ -13,9 +13,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject nextBall;
     [SerializeField] GameObject secondNextBall;
     [SerializeField] Sprite sprite;
-    public int i = -1;
-    public int j = -1;
-    public bool click = true;
+
+    public bool isHoldingBall = true;
+
+    [SerializeField] Animator gameOver;
+    [SerializeField] Animator gameOverText;
 
     [SerializeField] AudioSource dropAudio;
     [SerializeField] AudioSource fusionAudio;
@@ -40,7 +42,7 @@ public class Player : MonoBehaviour
         var metalObjSpawn = metalObj[randomIndex];
         currentBall = Instantiate(metalObjSpawn, spawnOffset.position, Quaternion.identity,spawnOffset);
         currentBall.GetComponent<Collider2D>().isTrigger = true;
-        click = true;
+        isHoldingBall = true;
     }
 
     // Update is called once per frame
@@ -53,9 +55,10 @@ public class Player : MonoBehaviour
         nextPos.x = Mathf.Clamp(nextPos.x, 0f, 8f);
         transform.position = nextPos;
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && click == true)
+        bool dropBallButton = (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space));
+        if (dropBallButton && isHoldingBall)
         {
-            click = false;
+            isHoldingBall = false;
             currentBall.transform.parent = null;
             currentBall.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             currentBall.GetComponent<Collider2D>().isTrigger = false;
@@ -66,7 +69,6 @@ public class Player : MonoBehaviour
             Invoke("CloseHand", 0.2f);
             Invoke("GrapBall", 0.5f);
         }
-
 
     }
     void CloseHand()

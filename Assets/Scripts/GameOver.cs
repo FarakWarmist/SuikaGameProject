@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+    [SerializeField] Animator fadeToBlack;
+    [SerializeField] Animator gameOverText;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var ball = collision.gameObject.GetComponent<Balls>();
-        if (ball != null)
+        if(collision.GetComponent<Balls>() != null)
         {
-            FindAnyObjectByType<Player>().GameOver();
+            fadeToBlack.SetTrigger("GameOver");
+            gameOverText.SetTrigger("GameOver");
         }
     }
 }
